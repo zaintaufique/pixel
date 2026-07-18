@@ -60,10 +60,8 @@
     .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
          gap:1rem;padding:.85rem clamp(1rem,5vw,3rem);background:var(--nav);color:#fff}
     .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-    .logo-slot{display:flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;
-               border:1.5px dashed #4a515a;border-radius:8px;color:#8a929b;
-               font-family:var(--mono);font-size:.58rem;letter-spacing:.06em}
-    .logo-name{font-family:var(--display);font-weight:700;font-size:1.2rem;color:#fff;letter-spacing:-.01em}
+    /* Logo: text wordmark only */
+    .logo-name{font-family:var(--display);font-weight:700;font-size:1.3rem;color:#fff;letter-spacing:-.015em}
     .nav nav{display:flex;gap:clamp(.9rem,2.4vw,1.8rem)}
     .nav nav a{color:#c9d0d8;font-size:.9rem}
     .nav nav a:hover,.nav nav a[aria-current]{color:#fff}
@@ -184,7 +182,6 @@
   <!-- NAV -->
   <header class="nav">
     <a class="logo" href="./">
-      <img class="logo-img" src="photos/logo.png" alt="pixel.pk">
       <span class="logo-name">pixel.pk</span>
     </a>
     <nav aria-label="Primary">
