@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ── SEO ───────────────────────────────────────────────────────────── -->
+  <title>TV Backlight Finder — Match Your TV Model to the Right LED Strip | pixel.pk</title>
+  <meta name="description"
+        content="Enter your TV model or brand to find compatible backlight LED strips with full specs: number of lights, voltage per LED, total voltage, and strip count.">
+  <link rel="canonical" href="https://example.com/">
+  <meta name="theme-color" content="#1b1f24">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="pixel.pk">
+  <meta property="og:title" content="TV Backlight Finder — LED strips by TV model | pixel.pk">
+  <meta property="og:description" content="Search by TV model, brand, or old strip serial. See lights, voltage and strip count instantly.">
+  <meta property="og:url" content="https://example.com/">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"Dataset",
+    "name":"TV backlight LED strip specifications",
+    "description":"TV brands and model numbers matched to backlight LED strip serial, number of lights, voltage per LED, total voltage and strip count.",
+    "keywords":["TV backlight","LED backlight strip","backlight replacement","TV LED strip voltage","backlight serial"],
+    "creator":{"@type":"Organization","name":"pixel.pk"},
+    "variableMeasured":["Brand","TV model","Screen size","Backlight serial","Number of lights","Voltage per LED","Total voltage","Number of strips"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org","@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I check my backlight voltage?","acceptedAnswer":{"@type":"Answer","text":"Multiply the number of LEDs on the strip by the voltage of each LED. For example 16 LEDs at 6V each need 96V total from the driver board."}},
+      {"@type":"Question","name":"How do I match strip length and count?","acceptedAnswer":{"@type":"Answer","text":"Match both the number of strips and the length of a single strip to your panel. A set that has the right total but the wrong per-strip length will not fit."}},
+      {"@type":"Question","name":"Where is the backlight number printed?","acceptedAnswer":{"@type":"Answer","text":"The serial is printed along the LED strip inside the TV, for example MS-L5418 or JL.D40061330-003BS. You can also search by TV brand or model."}}
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --nav:#1b1f24; --bg:#ffffff; --panel:#f5f7f9; --panel-line:#e3e8ec;
+      --ink:#171c22; --muted:#5c6772; --line:#e2e6ea;
+      --blue:#1766dc; --blue-dark:#1257bd; --blue-soft:#e8f0fd;
+      --glow:#f4b740; --ok:#12855b; --warn:#b06a12;
+      --display:"Space Grotesk",system-ui,sans-serif;
+      --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+      --r:10px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+    a{color:var(--blue);text-decoration:none}
+    h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+
+    /* ── Top nav ──────────────────────────────────────────────────────── */
+    .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+         gap:1rem;padding:.85rem clamp(1rem,5vw,3rem);background:var(--nav);color:#fff}
+    .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+    /* Logo placeholder — replace .logo-slot with <img src="logo.png" alt="pixel.pk"> later */
+    .logo-slot{display:flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;
+               border:1.5px dashed #4a515a;border-radius:8px;color:#8a929b;
+               font-family:var(--mono);font-size:.58rem;letter-spacing:.06em}
+    .logo-img{height:38px;width:auto;display:block}
+    .logo-name{font-family:var(--display);font-weight:700;font-size:1.2rem;color:#fff;letter-spacing:-.01em}
+    .nav nav{display:flex;gap:clamp(.9rem,2.4vw,1.8rem)}
+    .nav nav a{color:#c9d0d8;font-size:.9rem}
+    .nav nav a:hover,.nav nav a[aria-current]{color:#fff}
+
+    /* ── Hero ─────────────────────────────────────────────────────────── */
+    .hero{background:linear-gradient(180deg,#f7f9fb,#eef2f6);border-bottom:1px solid var(--panel-line);
+          text-align:center;padding:clamp(2.4rem,6vw,3.8rem) 1rem}
+    .hero h1{font-size:clamp(1.7rem,4.6vw,2.6rem)}
+    .hero p{max-width:56ch;margin:.7rem auto 1.5rem;color:var(--muted)}
+    .search{display:flex;gap:.5rem;max-width:620px;margin:0 auto;justify-content:center;flex-wrap:wrap}
+    .search input{flex:1 1 320px;min-width:0;padding:.85rem 1rem;font-size:1rem;font-family:inherit;color:var(--ink);
+                  background:#fff;border:1.5px solid #cdd5dd;border-radius:8px}
+    .search input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+    .btn{font-family:var(--display);font-weight:600;letter-spacing:.02em;cursor:pointer;border:none;border-radius:8px}
+    .search .btn{padding:.85rem 1.5rem;background:var(--blue);color:#fff;font-size:.95rem}
+    .search .btn:hover{background:var(--blue-dark)}
+
+    /* ── Layout: sidebar + results ────────────────────────────────────── */
+    .wrap{max-width:1120px;margin:0 auto;padding:2rem clamp(1rem,5vw,3rem) 3rem;
+          display:grid;grid-template-columns:230px 1fr;gap:2rem;align-items:start}
+
+    .filters{background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--r);padding:1.2rem;position:sticky;top:78px}
+    .filters h2{font-size:1.05rem;margin-bottom:1rem}
+    .field{margin-bottom:1.15rem}
+    .field > label,.field legend{display:block;font-size:.72rem;font-weight:700;letter-spacing:.05em;
+                                  text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;padding:0}
+    .field select{width:100%;padding:.55rem .6rem;font:inherit;font-size:.9rem;color:var(--ink);
+                  background:#fff;border:1px solid var(--line);border-radius:7px}
+    fieldset{border:none;margin:0;padding:0}
+    .check{display:flex;align-items:center;gap:.5rem;font-size:.9rem;margin:.35rem 0;color:var(--ink)}
+    .check input{accent-color:var(--blue);width:16px;height:16px}
+    .reset{margin-top:.4rem;background:none;border:none;color:var(--blue);font-size:.85rem;cursor:pointer;padding:0;font-family:inherit}
+
+    .results .count{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin:0 0 1rem}
+
+    /* ── Result card ──────────────────────────────────────────────────── */
+    .card{display:grid;grid-template-columns:minmax(180px,1fr) 1.6fr auto;gap:1.8rem;align-items:start;
+          background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.7rem;margin-bottom:1.1rem;
+          box-shadow:0 1px 2px rgba(23,28,34,.04)}
+    .card:hover{border-color:#cfd8e0;box-shadow:0 4px 14px rgba(23,28,34,.07)}
+
+    /* shared little label */
+    .eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+    /* LEFT: TV identity — brand is the hero of the card */
+    .c-model{border-right:1px solid var(--line);padding-right:1.6rem}
+    .c-model .brand-name{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1;
+                         letter-spacing:-.025em;margin:.25rem 0 .5rem}
+    .c-model .model-line{font-family:var(--mono);font-size:.9rem;color:var(--ink);margin-bottom:.7rem}
+    .c-model .model-line span{color:var(--muted)}
+    .size-pill{display:inline-block;font-family:var(--mono);font-weight:700;font-size:.72rem;color:var(--blue);
+               background:var(--blue-soft);padding:.22rem .55rem;border-radius:5px}
+
+    /* MIDDLE: backlight — serial (the model) comes first, big */
+    .c-specs .serial-big{font-family:var(--mono);font-weight:700;font-size:1.25rem;color:var(--ink);
+                         line-height:1.1;margin:.28rem 0 .2rem;word-break:break-all}
+    .c-specs .sub{font-size:.9rem;color:var(--muted);margin-bottom:1rem}
+    .specs{list-style:none;margin:0 0 1rem;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.55rem 1.4rem}
+    .specs li{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;
+              font-size:.86rem;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:.4rem}
+    .specs b{color:var(--ink);font-family:var(--mono);font-weight:700;font-size:.9rem;white-space:nowrap}
+    .badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:600;padding:.15rem .5rem;border-radius:5px}
+    .badge.ok{color:var(--ok);background:#e6f4ee}
+    .badge.warn{color:var(--warn);background:#fbf1e2}
+    .wa-cta{display:inline-flex;align-items:center;gap:.5rem;padding:.62rem 1.1rem;background:#25d366;color:#fff;
+            border-radius:7px;font-family:var(--display);font-weight:600;font-size:.85rem;text-decoration:none}
+    .wa-cta:hover{background:#1ebe5d}
+    .wa-cta svg{flex:none}
+
+    /* RIGHT: photo of the backlight, linked by filename convention.
+       If the file isn't in /photos yet, the slot shows the exact name to use. */
+    .c-img{width:150px;flex:none}
+    .photo{width:100%;aspect-ratio:1/1;border-radius:9px;border:1px solid var(--line);
+           background:#f5f7f9;object-fit:cover;display:block}
+    .photo-empty{display:none}
+    .c-img.no-photo .photo{display:none}
+    .c-img.no-photo .photo-empty{width:100%;aspect-ratio:1/1;border:1.5px dashed #c2ccd5;border-radius:9px;
+           background:#fafbfc;color:var(--muted);display:flex;flex-direction:column;align-items:center;
+           justify-content:center;gap:.45rem;font-size:.68rem;line-height:1.35;text-align:center;padding:.7rem}
+    .photo-empty svg{opacity:.75}
+    .photo-empty code{font-family:var(--mono);font-size:.66rem;color:var(--ink);background:#eef2f6;
+           border-radius:4px;padding:.15rem .3rem;word-break:break-all;margin-top:.15rem}
+
+    .empty{background:#fff;border:1px dashed var(--line);border-radius:var(--r);padding:2.5rem;text-align:center;color:var(--muted)}
+    .empty b{color:var(--ink)}
+    mark{background:var(--glow);border-radius:2px;padding:0 .12em}
+
+    /* ── Did you know ─────────────────────────────────────────────────── */
+    .dyk{border-top:1px solid var(--line);background:var(--panel)}
+    .dyk-in{max-width:1120px;margin:0 auto;padding:2.4rem clamp(1rem,5vw,3rem)}
+    .dyk h2{font-size:1.4rem;margin-bottom:1.2rem}
+    .tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+    .tip{background:#fff;border:1px solid var(--panel-line);border-radius:var(--r);padding:1.1rem 1.2rem}
+    .tip h3{font-size:1rem;color:var(--blue);margin-bottom:.35rem}
+    .tip p{margin:0;font-size:.9rem;color:var(--muted)}
+
+    footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;
+           padding:1.3rem clamp(1rem,5vw,3rem);font-size:.85rem;color:var(--muted)}
+    footer a{color:var(--muted)}
+    footer nav{display:flex;gap:1.2rem}
+
+    @media (max-width:860px){
+      .wrap{grid-template-columns:1fr}
+      .filters{position:static}
+    }
+    @media (max-width:620px){
+      .card{grid-template-columns:1fr;gap:1.1rem}
+      .c-model{border-right:none;border-bottom:1px solid var(--line);padding-right:0;padding-bottom:1.1rem}
+      .c-img{width:100%}
+      .photo,.c-img.no-photo .photo-empty{aspect-ratio:16/9}
+      .specs{grid-template-columns:1fr 1fr}
+    }
+    @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <a class="logo" href="/">
+      <!-- Replace this span with: <img class="logo-img" src="logo.png" alt="pixel.pk"> -->
+      <span class="logo-slot" aria-hidden="true">LOGO</span>
+      <span class="logo-name">pixel.pk</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#" aria-current="page">Home</a>
+      <a href="#results">Brand Finder</a>
+      <a href="#dyk">About</a>
+      <a href="#footer">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Find Your Perfect TV Backlight Match</h1>
+    <p>Enter your TV model or brand to see every compatible backlight strip and its full technical specs.</p>
+    <form class="search" role="search" id="searchForm">
+      <label for="q" style="position:absolute;left:-9999px">Search TV model, brand or backlight serial</label>
+      <input id="q" type="search" autocomplete="off" placeholder="Enter TV model (e.g. 40N2179PW or MS-L5418)">
+      <button class="btn" type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- SIDEBAR + RESULTS -->
+  <div class="wrap">
+    <aside class="filters" aria-label="Filter options">
+      <h2>Filter options</h2>
+      <div class="field">
+        <label for="fBrand">Brand</label>
+        <select id="fBrand"><option value="">All brands</option></select>
+      </div>
+      <div class="field">
+        <label for="fSize">Screen size</label>
+        <select id="fSize"><option value="">All sizes</option></select>
+      </div>
+      <div class="field">
+        <fieldset>
+          <legend>Backlight type</legend>
+          <label class="check"><input type="checkbox" class="fType" value="LED Strip"> LED Strip</label>
+          <label class="check"><input type="checkbox" class="fType" value="Edge-lit"> Edge-lit</label>
+        </fieldset>
+      </div>
+      <button class="reset" id="reset" type="button">Reset filters</button>
+    </aside>
+
+    <section class="results" id="results" aria-label="Backlight results">
+      <p class="count" id="count" aria-live="polite" role="status"></p>
+      <div id="cards"></div>
+    </section>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <section class="dyk" id="dyk">
+    <div class="dyk-in">
+      <h2>Did you know?</h2>
+      <div class="tips">
+        <article class="tip">
+          <h3>Check your voltage first</h3>
+          <p>Total voltage = number of LEDs × voltage per LED. A 16-LED strip at 6V each needs 96V from the driver — order the wrong voltage and the strip won't light.</p>
+        </article>
+        <article class="tip">
+          <h3>Match strip length and count</h3>
+          <p>You need both the right number of strips and the right length per strip. A set with the correct total but wrong per-strip length won't seat in your panel.</p>
+        </article>
+        <article class="tip">
+          <h3>The same strip fits many TVs</h3>
+          <p>Brands share panels, so one serial can cover several models. If your backlight number matches, the strip fits — even under a different brand name.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <nav aria-label="Footer"><a href="#">Privacy Policy</a><a href="#">Sitemap</a><a href="#">Contact</a></nav>
+    <span>© 2026 pixel.pk · Confirm the serial on the physical strip before ordering.</span>
+  </footer>
+
+  <script>
+    /* Data from your spreadsheet. null = spec not yet recorded.
+       Photos are linked automatically from the "serial" (see PHOTO convention
+       below), so you never set image paths by hand. Leave "img" as null unless
+       a specific part needs a custom/off-convention image path. */
+    const DATA=[
+      {brand:"CHN",     model:null,        size:40, serial:"MS-L5418",             lights:16, vpl:6, total:96, strips:1, type:"LED Strip", img:null},
+      {brand:"Hisense", model:"40N2179PW", size:40, serial:"JL.D40061330-003BS",   lights:6,  vpl:3, total:18, strips:3, type:"LED Strip", img:null},
+      {brand:"Orient",  model:null,        size:32, serial:"32D3503V1W6C1B55419M", lights:null, vpl:null, total:null, strips:null, type:"LED Strip", img:null},
+      {brand:"Leopard", model:null,        size:32, serial:"32D3503V1W6C1B55419M", lights:null, vpl:null, total:null, strips:null, type:"LED Strip", img:null}
+    ];
+
+    const $=id=>document.getElementById(id);
+    const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    let q="",brand="",size="",types=[];
+
+    [...new Set(DATA.map(d=>d.brand))].sort().forEach(b=>$("fBrand").insertAdjacentHTML("beforeend",`<option>${esc(b)}</option>`));
+    [...new Set(DATA.map(d=>d.size))].sort((a,b)=>a-b).forEach(s=>$("fSize").insertAdjacentHTML("beforeend",`<option value="${s}">${s}"</option>`));
+
+    const hl=t=>{ if(!q)return esc(t); const i=t.toLowerCase().indexOf(q.toLowerCase()); if(i<0)return esc(t);
+      return esc(t.slice(0,i))+"<mark>"+esc(t.slice(i,i+q.length))+"</mark>"+esc(t.slice(i+q.length)); };
+    const spec=(v,suf="")=>v==null?'<span style="color:var(--muted)">—</span>':esc(v)+suf;
+    const camIcon=`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.4"/>
+        <path d="M8.5 7 10 4.5h4L15.5 7"/></svg>`;
+
+    /* WhatsApp order button */
+    const WA_NUMBER="923390116960"; // +92 339 0116960
+    const waIcon=`<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.57-.48-.5-.67-.5h-.57c-.2 0-.5.07-.77.37-.26.3-1.01 1-1.01 2.42s1.04 2.8 1.18 3c.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.62.7.22 1.33.19 1.83.11.56-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.12-.27-.2-.57-.35zM12.03 21.3h-.01a9.2 9.2 0 01-4.68-1.28l-.34-.2-3.48.9.93-3.4-.22-.35a9.16 9.16 0 01-1.4-4.9c0-5.07 4.13-9.2 9.22-9.2a9.16 9.16 0 019.19 9.21c0 5.07-4.13 9.2-9.2 9.2zM19.85 4.07A11.03 11.03 0 0012.03.85C5.96.85.95 5.85.95 12.02c0 1.93.5 3.82 1.47 5.48L.86 23.15l5.79-1.52a11 11 0 005.38 1.37h.01c6.06 0 11.07-5 11.07-11.17 0-2.98-1.16-5.78-3.26-7.76z"/></svg>`;
+
+    /* ── PHOTO CONVENTION ────────────────────────────────────────────────
+       Every backlight photo is named after its serial and lives in /photos.
+       Example: serial "MS-L5418"  ->  photos/ms-l5418.jpg
+       To add a photo: save the picture with that exact name in the photos
+       folder and commit. Nothing else to edit. The empty slot on each card
+       tells you the precise filename to use, so names never drift. */
+    const PHOTO_DIR="photos";   // folder in the repo
+    const PHOTO_EXT="jpg";      // save all backlight photos as .jpg
+    const slugify=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+    const photoPath=d=>d.img||`${PHOTO_DIR}/${slugify(d.serial)}.${PHOTO_EXT}`;
+
+    function photoHTML(d){
+      const path=photoPath(d);
+      const alt=`Photo of backlight strip ${d.serial} for ${d.brand} ${d.size}-inch TV`;
+      return `<div class="c-img">
+        <img class="photo" src="${esc(path)}" alt="${esc(alt)}" loading="lazy"
+             onerror="this.closest('.c-img').classList.add('no-photo')">
+        <div class="photo-empty">${camIcon}<span>Add photo as</span><code>${esc(path)}</code></div>
+      </div>`;
+    }
+
+    function render(){
+      const rows=DATA.filter(d=>{
+        if(brand && d.brand!==brand) return false;
+        if(size && String(d.size)!==size) return false;
+        if(types.length && !types.includes(d.type)) return false;
+        if(q){ const hay=[d.brand,d.model,d.serial,d.size+'"'].filter(Boolean).join(" ").toLowerCase();
+               if(!hay.includes(q.toLowerCase())) return false; }
+        return true;
+      });
+
+      $("count").textContent=`Showing ${rows.length} of ${DATA.length} backlights`;
+
+      if(!rows.length){ $("cards").innerHTML=`<div class="empty"><b>No match yet.</b><br>
+        Try just the brand (e.g. "Hisense") or the first characters of the serial on your strip.</div>`; return; }
+
+      $("cards").innerHTML=rows.map(d=>{
+        const complete=d.total!=null;
+        const badge=complete
+          ?'<span class="badge ok">&#10003; Specs verified</span>'
+          :'<span class="badge warn">&#9680; Specs incomplete</span>';
+        const waText=encodeURIComponent(
+          `Hi pixel.pk, I'd like to order a TV backlight.\n`+
+          `TV brand: ${d.brand}${d.model?` (${d.model})`:``}\n`+
+          `Backlight serial: ${d.serial}\n`+
+          `Screen size: ${d.size}-inch`);
+        const waHref=`https://wa.me/${WA_NUMBER}?text=${waText}`;
+        const modelLine = d.model
+          ? `Model ${hl(d.model)}`
+          : `<span>Model not listed</span>`;
+        return `<article class="card">
+          <div class="c-model">
+            <span class="eyebrow">TV brand</span>
+            <div class="brand-name">${hl(d.brand)}</div>
+            <div class="model-line">${modelLine}</div>
+            <span class="size-pill">${d.size}" screen</span>
+          </div>
+          <div class="c-specs">
+            <span class="eyebrow">Backlight model</span>
+            <div class="serial-big">${hl(d.serial)}</div>
+            <div class="sub">Replacement LED strip &middot; ${d.size}-inch</div>
+            <ul class="specs">
+              <li>Lights <b>${spec(d.lights)}</b></li>
+              <li>Voltage / LED <b>${spec(d.vpl,"V")}</b></li>
+              <li>Total voltage <b>${spec(d.total,"V")}</b></li>
+              <li>Strips <b>${spec(d.strips)}</b></li>
+            </ul>
+            ${badge}
+            <div style="margin-top:.8rem"><a class="wa-cta" href="${waHref}" target="_blank" rel="noopener">${waIcon} Order on WhatsApp</a></div>
+          </div>
+          ${photoHTML(d)}
+        </article>`;
+      }).join("");
+    }
+
+    $("searchForm").addEventListener("submit",e=>{e.preventDefault();q=$("q").value.trim();render();
+      document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});});
+    $("q").addEventListener("input",e=>{q=e.target.value.trim();render();});
+    $("fBrand").addEventListener("change",e=>{brand=e.target.value;render();});
+    $("fSize").addEventListener("change",e=>{size=e.target.value;render();});
+    document.querySelectorAll(".fType").forEach(c=>c.addEventListener("change",()=>{
+      types=[...document.querySelectorAll(".fType:checked")].map(x=>x.value);render();}));
+    $("reset").addEventListener("click",()=>{q=brand=size="";types=[];
+      $("q").value="";$("fBrand").value="";$("fSize").value="";
+      document.querySelectorAll(".fType").forEach(c=>c.checked=false);render();});
+
+    render();
+  </script>
+</body>
+</html>
