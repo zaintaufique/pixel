@@ -1,34 +1,27 @@
-# pixel.pk — TV Backlight Finder
+# Backlight photos
 
-A single-page site that matches TV brands/models to their backlight LED strip and
-lets customers order the part on WhatsApp.
+Put every backlight photo in this folder, named after the backlight **serial**.
 
-## Files
+## The rule
 
-    index.html        The whole website (structure, styles, and data in one file)
-    photos/           Backlight photos, named by serial (see photos/README.md)
-    LICENSE           All rights reserved
+    serial  ->  lowercase, replace anything that isn't a letter or number with "-"
+    save as .jpg in this folder
 
-## Add a new TV + backlight
+## Examples (current catalogue)
 
-1. Open `index.html` and find the `DATA` list near the bottom.
-2. Copy an existing line and fill in the values:
+| Brand   | Serial                 | Filename to upload here          |
+|---------|------------------------|----------------------------------|
+| CHN     | MS-L5418               | `ms-l5418.jpg`                   |
+| Hisense | JL.D40061330-003BS     | `jl-d40061330-003bs.jpg`         |
+| Orient  | 32D3503V1W6C1B55419M   | `32d3503v1w6c1b55419m.jpg`       |
+| Leopard | 32D3503V1W6C1B55419M   | `32d3503v1w6c1b55419m.jpg` (same file — shared strip) |
 
-       { brand:"Samsung", model:"UA40J5200", size:40, serial:"SVS400A79",
-         lights:8, vpl:3, total:24, strips:1, type:"LED Strip", img:null },
+## Notes
 
-   - Use `null` for any spec you don't have yet (it shows as "—").
-   - Leave `img:null` — photos are linked automatically from the serial.
-3. Commit. The new card appears, and its photo slot shows the filename to add.
-
-## Add the photo
-
-Save the picture in `photos/` using the name shown on the card
-(serial in lowercase, non-letters/numbers become `-`, `.jpg`). Commit. Done.
-See `photos/README.md` for examples.
-
-## Publish (GitHub Pages)
-
-Settings → Pages → Deploy from a branch → `main` / root → Save.
-Your site goes live at `https://<username>.github.io/<repo>/`, and you can point
-the `pixel.pk` domain at it under the same Pages settings.
+- You do **not** edit the website code to add a photo. Just drop the correctly
+  named `.jpg` here and commit. The card picks it up automatically.
+- Not sure of the name? Open the site — any card without a photo shows the exact
+  filename it's waiting for.
+- Two TVs that share a serial share one photo. Upload it once.
+- Keep photos reasonably small (roughly 800×800px, under ~200 KB) so the page
+  stays fast.
